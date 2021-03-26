@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+    <title>Registro</title>
+</head>
+<body>
+    <section >
+        <h4>REGISTRARSE</h4>
+        <form action="/registro" method="POST" class= "form-register">
+            <div>
+                <center><input class="controls" type="text" name="nombre"  placeholder="Nombres: "></center> 
+            </div>
+            <div>
+                <center><input class="controls" type="text" name="apellido"  placeholder="Apellidos: "></center>
+            </div>
+            <div>
+                <center><input class="controls" type="text" name="edad"  placeholder="Edad: "></center>
+            </div>
+            <div>
+                <center><input class="controls" type="email" name="correo"  placeholder="Correo: "></center>
+            </div>
+            <div>
+                <center><input class="controls" type="password" name="contraseña"  placeholder="Contraseña: "></center>
+            </div>
+            <div>
+                <center><input class="controls" type="text" name="ocupacion"  placeholder="ocupacion: "></center>
+            </div>
+            <label> Estoy de acuerdo <a href="#"> Terminos y Condiciones</a></label>
+            <div>
+                <center>
+                    <button type="submit" class="btn">
+                        Crear Cuenta
+                    </button>
+                </center>
+            </div>
+        </form>
+        
+    </section>
+</body>
+</html>
