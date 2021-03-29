@@ -5,10 +5,19 @@
     
 }
 
-body {
+body{
 
-    background-image: url('imagen.jpeg');
+    background-color: #1d1d21;
 }
+header{
+    background-color:#776875;
+    height: 50px;
+    color: #fff;
+}
+header h2{
+    padding: 10px;
+}
+
 .form-register { 
     width: 400px;
     background-color: #442e44;
@@ -17,13 +26,17 @@ body {
     margin-top: 100px;
     border-radius: 6px; 
     font-family: 'calibri';
-    color: rgb(0, 0, 0);
+    color:#fff;
     box-shadow: 7px 7px 37px rgb(145, 124, 153);
 }
 .form-register h4 {
     font-size: 22px;
     margin-bottom: 20px;
     text-align: center;
+}
+.form-register input {
+    margin-bottom: 20px;
+    text-align: left;
 }
 .controls {
     width: 290px;
@@ -50,7 +63,7 @@ body {
 .btn {
     
     background-color: #776875 ;
-    color: black;
+    color: #fff;
     font-size: 16px;
     text-decoration:none;
     padding: 15px 20px;

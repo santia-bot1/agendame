@@ -10,7 +10,7 @@
     <header>
         <h2>Agendame</h2>
         <nav>
-            <a href="{{url_for('home')}}">Eventos</a>
+            <a href="">Eventos</a>
             <a href="">Notas</a>
             <a href="">Calendario</a>
         </nav>
@@ -49,6 +49,14 @@
             <div>
                 <a href="">Descripcion</a>
             </div>
+        </section>
+        <section>
+                <form action="/inicio/agregarEvento" method="POST">
+                    <input type="text" name="descripcion" placeholder="Descripcion:">
+                    <input type="text" name="Lugar" placeholder="Lugar:">
+                    <input type="text" name="descripcion" placeholder="Descripcion:">
+                    <input type="text" name="descripcion" placeholder="Descripcion:">
+                </form>
         </section>
     </article>
 </body>

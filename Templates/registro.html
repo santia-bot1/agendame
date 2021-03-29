@@ -8,37 +8,42 @@
     <title>Registro</title>
 </head>
 <body>
-    <section >
-        <h4>REGISTRARSE</h4>
-        <form action="/registro" method="POST" class= "form-register">
-            <div>
-                <center><input class="controls" type="text" name="nombre"  placeholder="Nombres: "></center> 
-            </div>
-            <div>
-                <center><input class="controls" type="text" name="apellido"  placeholder="Apellidos: "></center>
-            </div>
-            <div>
-                <center><input class="controls" type="text" name="edad"  placeholder="Edad: "></center>
-            </div>
-            <div>
-                <center><input class="controls" type="email" name="correo"  placeholder="Correo: "></center>
-            </div>
-            <div>
-                <center><input class="controls" type="password" name="contraseña"  placeholder="Contraseña: "></center>
-            </div>
-            <div>
-                <center><input class="controls" type="text" name="ocupacion"  placeholder="ocupacion: "></center>
-            </div>
-            <label> Estoy de acuerdo <a href="#"> Terminos y Condiciones</a></label>
-            <div>
-                <center>
-                    <button type="submit" class="btn">
-                        Crear Cuenta
-                    </button>
-                </center>
-            </div>
-        </form>
-        
-    </section>
+    <header>
+        <h2>Agendame</h2>
+    </header>
+    <article>
+        <section class= "form-register">
+            <h4>REGISTRARSE</h4>
+            <center><form action="/iniciar/registro" method="POST" class="form">
+                <div>
+                    <input class="controls" type="text" name="nombre"  placeholder="Nombres: "> 
+                </div>
+                <div>
+                    <input class="controls" type="text" name="apellido"  placeholder="Apellidos:">
+                </div>
+                <div>
+                    <input class="controls" type="text" name="edad"  placeholder="Edad: ">
+                </div>
+                <div>
+                    <input class="controls" type="email" name="correo"  placeholder="Correo: ">
+                </div>
+                <div>
+                    <input class="controls" type="password" name="contraseña"  placeholder="Contraseña: ">
+                </div>
+                <div>
+                    <input class="controls" type="text" name="ocupacion"  placeholder="ocupacion: ">
+                </div>
+                <label> Estoy de acuerdo <a href="#"> Terminos y Condiciones</a></label>
+                <div>
+                        <center><button type="submit" class="btn">
+                            Crear Cuenta
+                        </button></center>
+                    
+                </div>
+            </form>
+        </center>
+        </section>
+    </article>
+    
 </body>
 </html>

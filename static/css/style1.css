@@ -7,7 +7,15 @@
 
 body {
 
-    background-image: url('imagen.jpeg');
+    background-color: #1d1d21;
+}
+header{
+    background-color:#776875;
+    height: 50px;
+    color: #fff;
+}
+header h2{
+    padding: 10px;
 }
 .form-register { 
     width:400px;
@@ -25,6 +33,7 @@ body {
     margin-bottom: 20px;
     text-align: center;
 }
+
 .controls {
     width: 290px;
     background-color: rgb(255, 255, 255);
@@ -62,6 +71,6 @@ body {
     margin:  6px;
     margin-left: auto;
     border-radius: 4px;
-    text-align: center;
-
+    float:none;
+	text-align:center;
 }

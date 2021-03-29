@@ -14,12 +14,13 @@ mysql=MySQL(app)
 
 #configuraciones
 app.secret_key = "mysecretkey"
-
+#ruta inicial
 @app.route("/")
 def index():
     return render_template("index.html")
 
-@app.route("/home", methods=["POST"])
+#rutas de inicio de sesion
+@app.route("/iniciar/", methods=["POST"])
 def login():
     msg =''
     if request.method == 'POST' and 'correo' in request.form and 'contraseña' in request.form:
@@ -36,8 +37,15 @@ def login():
         else:
             msg="Correo/Contraseña Incorrecto"
     return render_template("index.html",msg=msg)
-
-@app.route("/registro", methods=["POST"])
+#ruta de cerrar sesion
+@app.route('/iniciar/cerrar')
+def logout():
+    session.pop('loggedin', None)
+    session.pop('idregistro', None)
+    session.pop('correo', None)
+    return redirect(url_for('index'))
+#ruta de registro
+@app.route("/iniciar/registro", methods=["POST"])
 def registro():
     msg=""
     if request.method == "POST":
@@ -52,13 +60,32 @@ def registro():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("INSERT INTO registro (nombre,apellido,edad,correo,contraseña,ocupacion)VALUES (%s,%s,%s,%s,%s,%s)", (nombre,apellido,edad,correo,contraseña,ocupacion))
     mysql.connection.commit()
-    flash("Contacto Agregado exitosamente")
     return redirect(url_for(".index"))
-
-@app.route("/registrar", methods=["POST"])
+#ruta que lleva al registro
+@app.route("/inicio/registrar", methods=["POST"])
 def registrar():
     if request.method == "POST":
         return render_template("registro.html")
+
+#rutas eventos
+@app.route("/inicio/home")
+def home():
+    return render_template("home.html")
+@app.route("/inicio/agregar")
+def agregar():
+    return render_template("agregarEvento.html")
+@app.route("/inicio/editar")
+def editar():
+    return render_template("editarEvento.html")
+@app.route("/inicio/borrar")
+def borrar():
+    return render_template("borrarEvento.html")
+
+#rutas funcionales de eventos
+#@app.route("/inicio/agregarEvento" methods='POST')
+#def agregarEvento():
+
+
 
 if __name__ == "__main__":
     app.run(port= 3000, debug=True)
