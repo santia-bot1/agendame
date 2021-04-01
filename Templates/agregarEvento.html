@@ -1,63 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendame</title>
-</head>
-<body>
-    <header>
-        <h2>Agendame</h2>
-        <nav>
-            <a href="">Eventos</a>
-            <a href="">Notas</a>
-            <a href="">Calendario</a>
-        </nav>
-        <form action="/iniciar/cerrar">
-        <button type="submit">
-            Cerrar Sesion
-        </button>
-    </form>
-    </header>
-    <article>
-        <section>
-            <div>
-                <label for="menu">Menu</label>
-            </div>
-            <div>
-                <a href="{{url_for('agregar')}}">Agregar Evento</a>
-            </div>
-            <div>
-                <a href="{{url_for('editar')}}">Editar Evento</a>
-            </div>
-            <div>
-                <a href="{{url_for('borrar')}}">Borrar Evento</a>
-            </div>
-            <div>
-                <a href="">Filtrar Por</a>
-            </div>
-            <div>
-                <a href="">Hora</a>
-            </div>
-            <div>
-                <a href="">Fecha</a>
-            </div>
-            <div>
-                <a href="">Lugar</a>
-            </div>
-            <div>
-                <a href="">Descripcion</a>
-            </div>
-        </section>
-        <section>
-                <form action="/inicio/agregarEvento" method="POST">
+
+                <form action="/agregarEvento" method="POST" >
                     <input type="text" name="descripcion" placeholder="Descripcion:">
-                    <input type="text" name="Lugar" placeholder="Lugar:">
-                    <input type="text" name="descripcion" placeholder="Descripcion:">
-                    <input type="text" name="descripcion" placeholder="Descripcion:">
+                    <input type="text" name="lugar" placeholder="Lugar:">
+                    <input type="time" name="hora" placeholder="Hora:">
+                    <input type="date" name="fecha" placeholder="fecha:">
+                    <button type="submit">
+                        Crear Evento
+                    </button>
                 </form>
-        </section>
-    </article>
-</body>
-</html>

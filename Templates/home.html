@@ -14,7 +14,7 @@
             <a href="">Notas</a>
             <a href="">Calendario</a>
         </nav>
-        <form action="/iniciar/cerrar">
+        <form action="/logout">
         <button type="submit">
             Cerrar Sesion
         </button>
@@ -28,12 +28,7 @@
             <div>
                 <a href="{{url_for('agregar')}}">Agregar Evento</a>
             </div>
-            <div>
-                <a href="{{url_for('editar')}}">Editar Evento</a>
-            </div>
-            <div>
-                <a href="{{url_for('borrar')}}">Borrar Evento</a>
-            </div>
+
             <div>
                 <a href="">Filtrar Por</a>
             </div>
@@ -48,6 +43,52 @@
             </div>
             <div>
                 <a href="">Descripcion</a>
+            </div>
+        </section>
+        <section>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>
+                                Descripcion
+                            </td>
+                            <td>
+                                Hora
+                            </td>
+                            <td>
+                                Fecha
+                            </td>
+                            <td>
+                                Lugar
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for evento in eventos %}
+                            <tr>
+                                <td>
+                                    {{evento.1}}
+                                </td>
+                                <td>    
+                                    {{evento.2}}
+                                </td>
+                                <td>
+                                    {{evento.3}}
+                                </td>
+                                <td>
+                                    {{evento.4}}
+                                </td>
+                                <td>
+                                    <a href="/edit/{{evento.0}}">Editar</a>
+                                </td>
+                                <td>
+                                    <a href="/delete/{{evento.0}}">Borrar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </section>
     </article>
