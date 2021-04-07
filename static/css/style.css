@@ -4,7 +4,25 @@
     box-sizing: border-box;
     
 }
-
+@font-face {
+    font-family: "Ubuntu-Bold";
+    src: url("/static/fonts/Ubuntu-Bold.ttf");
+}
+.logo_letra{
+    letter-spacing: 15px;
+    font-size: 1.3rem;
+    font-family: "Ubuntu-Bold"
+}
+.logo{
+    width: 100px;
+    height: 100px;
+}
+.logo-nav-container{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    background-color: #776875;
+}
 body{
 
     background-color: #1d1d21;
@@ -16,6 +34,7 @@ header{
 }
 header h2{
     padding: 10px;
+    font-family: "Ubuntu-Bold"
 }
 
 .form-register { 
@@ -33,10 +52,12 @@ header h2{
     font-size: 22px;
     margin-bottom: 20px;
     text-align: center;
+    font-family: "Ubuntu-Bold"
 }
 .form-register input {
     margin-bottom: 20px;
     text-align: left;
+    font-family: "Ubuntu-Bold"
 }
 .controls {
     width: 290px;
@@ -54,6 +75,7 @@ header h2{
 .form-register a {
     color: rgb(240, 221, 221);
     text-decoration: none;
+    font-family: "Ubuntu-Bold"
 }
 
 .form-register a:hover {

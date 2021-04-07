@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static',filename='css/style2.css')}}">
-    <title>Home</title>
+    <title>Filtrar Hora</title>
     <link rel="icon" href="/static/img/favicon.ico">
 </head>
 <body>
@@ -38,12 +38,25 @@
             <li><a href="{{url_for('irdescripcion')}}">Descripcion</a> </li> 
         </ul>
     </div>
-        <div class="table table-striped table-hover">
-            <table class="tabladata">
+
+        <div class="form-register block">
+            <h4>Filtrar Hora</h4>
+            <form action="/hora" method="POST" class="form">
+                <div>
+                    <input class="controls" type="time" name="hora" placeholder="hora: ">
+                </div>
+                <div>
+                    <button type="submit" class="btn">
+                        Fliltar
+                    </button>
+                </div>
+            </form>
+        </div>
+            <table class="margin table_filtro">
                 <caption><h4>Eventos</h4></caption>
-                    {% for evento in eventos %}
-                        <thead>
-                            <tr>
+                    {% for hora in horas %}
+                    <thead>
+                        <tr>
                             <td>
                                 Descripcion
                             </td>
@@ -60,33 +73,26 @@
                                 Lugar
                             </td>
                         </tr>
-                        </thead>
-                        <tbody>
+                    </thead>
+                    <tbody>
                         <tr>
                             <td>
-                                {{evento.1}}
+                                {{hora.1}}
                             </td>
                             <td>    
-                                {{evento.2}}
+                                {{hora.2}}
                             </td>
                             <td>
-                                {{evento.3}}
+                                {{hora.3}}
                             </td>
                             <td>
-                                {{evento.4}}
-                            </td>
-                            <td>
-                                <a href="/edit/{{evento.0}}" class="btn-tabla">Editar</a>
-                            </td>
-                            <td>
-                                <a href="/delete/{{evento.0}}" class="btn-tabla">Borrar</a>
+                                {{hora.4}}
                             </td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
-        </div>
 </article>
 
-</body>
-</html>
+</div>
+    

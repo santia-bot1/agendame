@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style2.css')}}">
+    <title>Editar Nota</title>
+    <link rel="icon" href="/static/img/favicon.ico">
+</head>
+<body>
+    <header class="header">
+        <div class="container logo-nav-container">
+            <img src="/static/img/logo_transparent.png" alt="logo" class="logo"> 
+            <label for="agendame" class="logo_letra">Agendame</label>     
+            <nav class="navigation">
+                <ul>             
+                    <li><a href="{{url_for('calendario')}}" >Calendario</a></li>
+                    <li><a href="{{url_for('notas')}}" >Notas</a></li>
+                    <li><a href="{{url_for('eventos')}}" >Eventos</a></li>
+                    <li><a href="{{url_for('logout')}}" >Cerrar Sesion</a></li>
+                </ul>
+            </nav>
+        </div>
+</header>
+    <article class="container">
+        <div class="caja2">
+            <ul>
+                <div>
+                    <label for="menu">Menu</label>
+                </div>
+                <li><a href="{{url_for('irNota')}}">Nueva Nota</a></li>
+            </ul>
+        </div>
+        <article>
+            <section class= "form-register">
+                <h4>Editar Nota</h4>
+                    <center><form action="/updatenota/{{nota.0}}" method="POST" class="form">
+                        <div>
+                            <input class="controls" type="text" name="nombre" value="{{nota.1}}"  placeholder="Lugar: ">
+                        </div>
+                        <div>
+                            <textarea name="descripcion" class="controls" value="{{nota.2}} rows="10" cols="50" placeholder="Descripcion" >{{nota.2}}</textarea>
+                        </div>
+                        <div>
+                            <center><button type="submit" class="btn">
+                                Editar Nota
+                            </button></center>
+                        </div>
+                    </form>
+                    </center>
+            </section>
+        </article>
+    </article>
+</body>
+</html>

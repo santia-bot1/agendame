@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario</title>
+    <link rel="icon" href="/static/img/favicon.ico">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style2.css')}}"/>
+</head>
+<body>
+    <header class="header">
+        <div class="container logo-nav-container">
+            <img src="/static/img/logo_transparent.png" alt="logo" class="logo"> 
+            <label for="agendame" class="logo_letra">Agendame</label>     
+            <nav class="navigation">
+                <ul>             
+                    <li><a href="{{url_for('calendario')}}" >Calendario</a></li>                   
+                    <li><a href="{{url_for('notas')}}" >Notas</a></li>
+                    <li><a href="{{url_for('eventos')}}" >Eventos</a></li>
+                    <li><a href="{{url_for('logout')}}" >Cerrar Sesion</a></li>
+                </ul>
+            </nav>
+        </div>
+</header>
+<article class="container">
+    <div class="caja2">
+        <ul>
+            <div>
+                <label for="menu">Menu</label>
+            </div>
+            <li><a href="{{url_for('agregar')}}">Nuevo evento</a></li>
+            <li><label for="">Filrar por</label></li>
+            <li><a href="{{url_for('irhoras')}}">Hora</a></li>
+            <li><a href="{{url_for('irfechas')}}">Fecha</a></li>
+        <li><a href="{{url_for('irlugar')}}">Lugar</a></li> 
+            <li><a href="{{url_for('irdescripcion')}}">Descripcion</a> </li> 
+        </ul>
+    </div>  
+    <div class= "form-register">
+        <h2>Calendario</h2>
+        <input type="date" id="start" name="trip-start"
+            value="2021-01-01"
+            min="2000-01-01" max="2021-12-31" class="form">
+</div>
+</body>
+</html>

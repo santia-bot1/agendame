@@ -5,12 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
-    <title>Registro</title>
+    <title>Crear Cuenta</title>
+    <link rel="icon" href="/static/img/favicon.ico">
 </head>
 <body>
-    <header>
-        <h2>Agendame</h2>
-    </header>
+    <header class="header">
+        <div class="container logo-nav-container">
+            <img src="/static/img/logo_transparent.png" alt="logo" class="logo"> 
+            <label for="agendame" class="logo_letra">Agendame</label>     
+</header>
     <article>
         <section class= "form-register">
             <h4>REGISTRARSE</h4>
@@ -41,6 +44,7 @@
                     
                 </div>
             </form>
+            <label for="">Si ya tienes Cuenta <a href="{{url_for('index')}}">Iniciar Sesion</a></label>
         </center>
         </section>
     </article>

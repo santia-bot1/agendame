@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style2.css')}}">
+    <title>Notas</title>
+    <link rel="icon" href="/static/img/favicon.ico">
+</head>
+        
+<header class="header">
+    <div class="container logo-nav-container">
+        <img src="/static/img/logo_transparent.png" alt="logo" class="logo"> 
+        <label for="agendame" class="logo_letra">Agendame</label>     
+        <nav class="navigation">
+            <ul>             
+                <li><a href="{{url_for('calendario')}}" >calendario</a></li>
+                <li><a href="{{url_for('notas')}}" >notas</a></li>
+                <li><a href="{{url_for('eventos')}}" >eventos</a></li>
+                <li><form action="/logout">
+                <button type="submit" class="btn-tabla">
+                    Cerrar Sesion
+                </button></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<article class="container">
+    <div class="caja2">
+        <ul>
+            <div>
+                <label for="menu">Menu</label>
+            </div>
+            <li><a href="{{url_for('irNota')}}">Nueva Nota</a></li>
+        </ul>
+    </div>
+        <div class="table table-striped table-hover">
+            
+            <table class="tabladata">
+                <caption><h2>Notas</h2></caption>
+                    {% for nota in notas %}
+                    <thead>
+                        <tr>
+                            <td>
+                                Nombre
+                            </td>
+                            
+                            <td>
+                                Descripcion
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                {{nota.1}}
+                            </td>
+                            <td>    
+                                {{nota.2}}
+                            </td>
+                            <td>
+                                <a href="/editnota/{{nota.0}}" class="btn-tabla">Editar</a>
+                            </td>
+                            <td>
+                                <a href="/deletenota/{{nota.0}}" class="btn-tabla">Borrar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+</article>

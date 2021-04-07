@@ -38,10 +38,10 @@
             <li><a href="{{url_for('irdescripcion')}}">Descripcion</a> </li> 
         </ul>
     </div>
-        <div class="table table-striped table-hover">
+        <div class="table table-striped table-hover" >
             <table class="tabladata">
-                <caption><h4>Eventos</h4></caption>
-                    {% for evento in eventos %}
+                <caption><h2>Evenetos Cercanos</h2></caption>
+                    {% for ultimo in ultimos %}
                         <thead>
                             <tr>
                             <td>
@@ -64,22 +64,16 @@
                         <tbody>
                         <tr>
                             <td>
-                                {{evento.1}}
+                                {{ultimo.1}}
                             </td>
                             <td>    
-                                {{evento.2}}
+                                {{ultimo.2}}
                             </td>
                             <td>
-                                {{evento.3}}
+                                {{ultimo.3}}
                             </td>
                             <td>
-                                {{evento.4}}
-                            </td>
-                            <td>
-                                <a href="/edit/{{evento.0}}" class="btn-tabla">Editar</a>
-                            </td>
-                            <td>
-                                <a href="/delete/{{evento.0}}" class="btn-tabla">Borrar</a>
+                                {{ultimo.4}}
                             </td>
                         </tr>
                     {% endfor %}
@@ -87,6 +81,5 @@
             </table>
         </div>
 </article>
-
 </body>
 </html>

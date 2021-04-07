@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static',filename='css/style2.css')}}">
-    <title>Nuevo Evento</title>
+    <title>Editar Evento</title>
     <link rel="icon" href="/static/img/favicon.ico">
 </head>
 <body>
@@ -15,7 +15,7 @@
             <label for="agendame" class="logo_letra">Agendame</label>     
             <nav class="navigation">
                 <ul>             
-                    <li><a href="{{url_for('calendario')}}" >Calendario</a></li>                 
+                    <li><a href="{{url_for('calendario')}}" >Calendario</a></li>                    
                     <li><a href="{{url_for('notas')}}" >Notas</a></li>
                     <li><a href="{{url_for('eventos')}}" >Eventos</a></li>
                     <li><a href="{{url_for('logout')}}" >Cerrar Sesion</a></li>
@@ -39,26 +39,27 @@
             </ul>
         </div>
         <section class= "form-register">
-            <h4>Nuevo Evento</h4>
-            <form action="/agregarEvento" method="POST" class="form">
+            <h4>Editar Evento</h4>
+            <center><form action="/update/{{evento.0}}" method="POST" class="form">
                 <div>
-                    <input class="controls" type="text" name="descripcion"  placeholder="Descripcion: ">
+                    <input class="controls" type="text" name="descripcion" value="{{evento.1}}"  placeholder="Descripcion: ">
                 </div>
                 <div>
-                    <input class="controls" type="text" name="lugar"  placeholder="Lugar: ">
+                    <input class="controls" type="text" name="lugar" value="{{evento.4}}"  placeholder="Lugar: ">
                 </div>
                 <div>
-                    <input class="controls" type="time" name="hora"  placeholder="Hora: "> 
+                    <input class="controls" type="time" name="hora" value="{{evento.2}}" placeholder="Hora: "> 
                 </div>
                 <div>
-                    <input class="controls" type="date" name="fecha"  placeholder="Fecha:">
+                    <input class="controls" type="date" name="fecha" value="{{evento.3}}" placeholder="Fecha:">
                 </div>
                 <div>
-                    <button type="submit" class="btn">
-                            Crear Evento
-                    </button>
+                        <center><button type="submit" class="btn">
+                            Editar Evento
+                        </button></center>
                 </div>
             </form>
+        </center>
         </section>
     </article>
 </body>

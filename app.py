@@ -37,7 +37,7 @@ def login():
             session["loggedin"] = True
             session["idregistro"] = account["idregistro"]
             session["correo"] = account["correo"]
-            return render_template("home.html")
+            return redirect(url_for(".reciente"))
         else:
             return render_template("index.html")
 
@@ -71,9 +71,10 @@ def registro():
         mysql.connection.commit()
         return redirect(url_for(".index"))
     
-#home
+#Aqui estan todas la rutas de eventos
+
 @app.route("/home")
-def home():
+def eventos():
     idregistro = session['idregistro']
     cursor = mysql.connection.cursor()
     cursor.execute("SELECT * FROM eventos where idregistro = %s", (idregistro,))
@@ -81,12 +82,10 @@ def home():
     return render_template("home.html", eventos=data)
 
 
-
 #ruta pata dirigirse a agregar
 @app.route("/agregarlink")
 def agregar():
     return render_template("agregarEvento.html")
-#rutas eventos
 #ruta para agregar evento
 @app.route("/agregarEvento", methods=["POST"])
 def agregarEvento():
@@ -99,16 +98,16 @@ def agregarEvento():
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
             cursor.execute("INSERT INTO eventos (descripcion,hora,fecha,lugar,idregistro) VALUES (%s,%s,%s,%s,%s)", (descripcion,hora,fecha,lugar,idregistro))
             mysql.connection.commit()
-            return render_template('home.html')
+            return redirect(url_for('.eventos'))
+            
 #ruta para editar evento segun la session
 @app.route("/edit/<id>")
 def edit_evento(id):
-    idregistro = session['idregistro']
     cursor = mysql.connection.cursor()
-    cursor.execute('SELECT * FROM eventos WHERE idregistro = %s', (idregistro,))
+    cursor.execute('SELECT * FROM eventos WHERE idevento = {0}'.format(id))
     data = cursor.fetchall()
-    return render_template('editarEvento.html', evento = data[0])
-#ruta para agregar evento
+    return render_template('editarEventos.html', evento = data[0])
+#ruta para editar evento
 @app.route('/update/<id>', methods=["POST"])
 def update(id):
     if request.method == 'POST':
@@ -125,15 +124,141 @@ def update(id):
             lugar = %s
         WHERE idevento = %s""", (descripcion,hora,fecha,lugar,id))
         mysql.connection.commit()
-        return redirect(url_for('home'))
+        return redirect(url_for('.eventos'))
+
 #ruta para borrar evento
 @app.route("/delete/<string:id>")
 def delete(id):
     cursor = mysql.connection.cursor()
     cursor.execute("DELETE FROM eventos WHERE idevento = {0}".format(id))
     mysql.connection.commit()
-    return redirect(url_for("home"))
+    return redirect(url_for('.eventos'))
+@app.route("/recientes")
+def reciente():
+    idregistro = session["idregistro"]
+    cursor = mysql.connection.cursor()
+    cursor.execute("""SELECT * FROM eventos 
+                        WHERE fecha > NOW() and idregistro=%s
+                        ORDER BY fecha 
+                        LIMIT 3""", (idregistro,))
+    data = cursor.fetchall()
+    return render_template("eventoreciente.html", ultimos=data)
 
+
+#ir rutas filtar
+@app.route("/irhora")
+def irhoras():
+    return render_template("horas.html")
+
+@app.route("/irfecha")
+def irfechas():
+    return render_template("fechas.html")
+
+@app.route("/irlugar")
+def irlugar():
+    return render_template("lugar.html")
+
+@app.route("/irdescripcion")
+def irdescripcion():
+    return render_template("descripcion.html")
+
+
+
+#rutas filtar
+@app.route("/hora", methods=['POST'])
+def horas():
+    hora = request.form["hora"]
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT * FROM eventos WHERE hora = %s',(hora,))
+    data = cursor.fetchall()
+    return render_template("horas.html", horas=data)
+    
+@app.route("/fecha", methods=['POST'])
+def fechas():
+    fecha = request.form["fecha"]
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT * FROM eventos WHERE fecha = %s',(fecha,))
+    data = cursor.fetchall()
+    return render_template("fechas.html", fechas=data)
+
+@app.route("/lugar", methods=['POST'])
+def lugar():
+    lugar = request.form["lugar"]
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT * FROM eventos WHERE lugar = %s',(lugar,))
+    data = cursor.fetchall()
+    return render_template("lugar.html", lugar=data)
+
+@app.route("/descripcion", methods=['POST'])
+def descripcion():
+    descripcion = request.form["descripcion"]
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT * FROM eventos WHERE descripcion = %s',(descripcion,))
+    data = cursor.fetchall()
+    return render_template("descripcion.html", descripcion=data)
+
+
+
+#Aqui estan todas la rutas de notas
+@app.route("/notas")
+def notas():
+    idregistro = session['idregistro']
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * FROM notas where idregistro = %s", (idregistro,))
+    data = cursor.fetchall()
+    return render_template("notas.html", notas=data)
+
+#ruta pata dirigirse a agregar
+@app.route("/notanueva")
+def irNota():
+    return render_template("agregarNota.html")
+
+#ruta para agregar Notas
+@app.route("/agregarnotas", methods=["POST"])
+def agregarNota():
+        if request.method == "POST":
+            nombre = request.form["nombre"]
+            descripcion = request.form["descripcion"]
+            idregistro = session["idregistro"]
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute("INSERT INTO notas (nombre,descripcion,idregistro) VALUES (%s,%s,%s)", (nombre,descripcion,idregistro))
+            mysql.connection.commit()
+            return redirect(url_for('.notas'))
+#ruta para editar evento segun la session
+@app.route("/editnota/<id>")
+def edit_nota(id):
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT * FROM notas WHERE idnotas = {0}'.format(id))
+    data = cursor.fetchall()
+    return render_template('editarNota.html', nota = data[0])
+
+#ruta para editar notas
+@app.route('/updatenota/<id>', methods=["POST"])
+def updatenota(id):
+    if request.method == 'POST':
+        nombre = request.form["nombre"]
+        descripcion = request.form["descripcion"]
+        cursor = mysql.connection.cursor()
+        cursor.execute("""
+        UPDATE notas SET
+            nombre = %s,
+            descripcion = %s
+        WHERE idnotas = %s""", (nombre,descripcion,id))
+        mysql.connection.commit()
+        return redirect(url_for('.notas'))
+
+#ruta para borrar nota
+@app.route("/deletenota/<string:id>")
+def deletenota(id):
+    cursor = mysql.connection.cursor()
+    cursor.execute("DELETE FROM notas WHERE idnotas = {0}".format(id))
+    mysql.connection.commit()
+    return redirect(url_for("notas"))
+
+#calendario
+@app.route("/calendario")
+def calendario():
+    return render_template("calendario.html")
 
 if __name__ == "__main__":
     app.run(port= 3000, debug=True)
